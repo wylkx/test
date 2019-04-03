@@ -1,0 +1,58 @@
+#include<string.h>
+#include<vector>
+#include<iostream>
+using namespace std;
+#define MAX 100
+int main()
+{
+	//arr 存储英文文章的字符数组
+	string arr[MAX] = { "The", "furthest", "distance", "in", "the", "world", "Is", "not", "between",
+		"lif", "and", "death", "But", "when", "I", "stand", "in", "front", "of", "you", "Yet", "you",
+		"don’t", "know", "that", "I", "love", "you", "The", "furthest", "distance", "in", "the", "world",
+		"Is", "not", "when", "I", "stand", "in", "front", "of", "you", "Yet", "you", "can’t", "see",
+		"my", "love", "But", "when", "undoubtedly", "knowing", "the", "love", "from", "both", "Yet",
+		"cannot", "be", "together", "The", "furthest", "distancein", "the", "world", "1" };
+	vector<string> number;//存储词汇
+	vector<string> num;//存储输出的词汇
+	num.clear();
+	number.clear();
+	number.push_back("you");
+	number.push_back("distance");
+	number.push_back("both");
+	number.push_back("condition");
+	number.push_back("world");
+	for (int i = 0; i < number.size(); i++)
+	{
+		int j = 0;
+		int temp = 0;
+		while (arr[j] != "1")
+		{
+			if (arr[j] == number.at(i))
+			{
+				for (int k = 0; k < num.size(); k++)
+				{
+					if (num.at(k) == arr[j])
+					{
+						temp = 1;//该词汇已在num上存储
+						break;
+					}
+				}
+				if (temp == 0)temp = 2;//该词汇未在num上存储
+			}
+			if (temp == 2)break;
+			j++;
+		}
+		if (temp == 2)
+			num.push_back(number.at(i));
+	}
+	for (int i = 0; i < num.size(); i++)
+	{
+		int j = 0;
+		while (num.at(i)[j]!='\0')
+		{
+			cout << num.at(i)[j++];
+		}
+		cout << endl;
+	}
+	return 0;
+}
